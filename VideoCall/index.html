@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Acompanhamento - Resily</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.7, user-scalable=no, shrink-to-fit=no">
+    <link rel="stylesheet" href="./css/bootstrap-material-design.min.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/room.css">
+</head>
+
+<body>
+    <div id="root">
+        <!-- Página de Login -->
+        <div id="login-root">
+            <!-- CARD - Login -->
+            <div id="login-card" class="card">
+                <!-- Linha Superior- -->
+                <div class="row-div" style="width: 100%; height: 10px">
+                    <div style="width: 190px; height: 100%; background-color: #EC87CF"></div>
+                    <div style="width: 160px; height: 100%; background-color: #EC87CF"></div>
+                    <div style="width: 100px; height: 100%; background-color: #EC87CF"></div>
+                </div>
+                <!-- Logo da resily -->
+                <div class="row-div" style="width: 100%; height: 100px; justify-content: center">
+                    <img style="height: 23px" src="./img/resily-total.jpeg" alt="">
+                    <div style="width: 9px"></div>
+                    <div style="width: 1px; height: 10px; background-color: #d8d8d8"></div>
+                    <div style="width: 9px"></div>
+                    <div style="width: 86px; height: 23px; font-size: 18px; color: #333333">Resily</div>
+                </div>
+                <!-- Informações para o usuário digitar(Nome + IdSala + Botão entrar)-->
+                <div class="col-div" style="width: 320px">
+                    <div class="form-group bmd-form-group is-filled" style="width: 100%; height: 80px">
+                        <label for="userId" style="font-size: 20px;" class="bmd-label-floating">Nome do Usuário:</label>
+                        <input type="text" class="form-control" name="userId" id="userId" maxlength="18">
+                    </div>
+                    <div class="form-group bmd-form-group is-filled" style="width: 100%; height: 80px">
+                        <label for="roomId" style="font-size: 20px;" class="bmd-label-floating">Digite o id da sala:</label>
+                        <input type="text" class="form-control" name="roomId" id="roomId" maxlength="18">
+                    </div>
+                    <div style="height: 24px"></div>
+                    <!-- Botão conectar-->
+                    <button id="login-btn" type="button" class="btn btn-raised btn-primary"
+                        style="width: 100%; height: 40px">Entrar
+                        <div class="ripple-container"></div>
+                    </button>
+                    <!-- Microfone da câmera -->
+                    <div class="row-div" style="width: 100%; height: 105px; justify-content: center">
+                        <img id="camera" style="height: 27px" src="./img/camera.png" onClick="event.cancelBubble = true"
+                            data-toggle="popover" data-placement="top" title="" data-content="">
+                        <!-- Selecionar a câmera -->
+                        <div id="camera-option" style="display: none"></div>
+                        <div style="width: 100px"></div>
+                        <img id="microphone" style="height: 27px" src="./img/mic.png"
+                            onClick="event.cancelBubble = true" data-toggle="popover" data-placement="top" title=""
+                            data-content="">
+                        <!-- Selecionar microfone -->
+                        <div id="mic-option" style="display: none"></div>
+                    </div>
+                    <!-- Botão testar sua conexão -->
+                    <div id="device-testing-btn" class="device-testing-btn">
+                        <div class="device-icon">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-device"></use>
+                            </svg>
+                        </div>
+                        Teste sua conexão
+                    </div>
+                    <div id="device-connect-list" class="device-connect-list" style="display: none;">
+                        <div id="connect-camera" class="connect icon-normal">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-cameraIcon"></use>
+                            </svg>
+                        </div>
+                        <div id="connect-voice"  class="connect icon-normal">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-voice"></use>
+                            </svg>
+                        </div>
+                        <div id="connect-mic" class="connect icon-normal">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-microphone"></use>
+                            </svg>
+                        </div>
+                        <div id="connect-network" class="connect icon-normal">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-network"></use>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Pop-up testar dispositivo -->
+        <div id="device-testing-root" style="display: none;">
+            <!-- Card testar -->
+            <div class="device-testing-card">
+                <!--Interface de preparação de detecção de equipamentos -->
+                <div id="device-testing-prepare" class="device-testing-prepare">
+                    <div class="testing-title">Conexão do dispositivo</div>
+                    <div class="testing-prepare-info">Antes da detecção do dispositivo, certifique-se <br>de ativar as permissões de câmera e microfone para a página atual </div>
+                    <div class="device-display">
+                        <div id="device-camera" class="device icon-normal">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-cameraIcon"></use>
+                            </svg>
+                        </div>
+                        <div id="device-voice"  class="device icon-normal">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-voice"></use>
+                            </svg>
+                        </div>
+                        <div id="device-mic" class="device icon-normal">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-microphone"></use>
+                            </svg>
+                        </div>
+                        <div id="device-network" class="device icon-normal">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-network"></use>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="device-loading" class="loading-background">
+                        <div class="device-loading"></div>
+                    </div>
+                    <!-- Solicitação de resultado de conexão-->
+                    <div class="connect-info">
+                        <!-- Resultados da conexão -->
+                        <div id="connect-info" style="max-width: 60%;"></div>
+                        <!-- Ícone de erro e guia de resolução de erros -->
+                        <div id="connect-attention-container" class="connect-attention-container" style="display: none;">
+                            <div id="connect-attention-icon" class="connect-attention-icon">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-warn"></use>
+                                </svg>
+                            </div>
+                            <div id="connect-attention-info" class="connect-attention-info" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Botão da área de teste -->
+                    <div class="testing-btn-display">
+                        <div id="start-test-btn" class="test-btn start-test start-gray">Iniciar detecção</div>
+                        <div id="connect-again-btn" class="test-btn connect-again" style="display: none;">Reconectar</div>
+                    </div>
+                </div>
+                <!-- Página da guia do teste -->
+                <div id="device-testing" class="device-testing" style="display: none;">
+                    <div class="device-testing-title">
+                        <div id="camera-testing" class="testing icon-gray">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-cameraIcon"></use>
+                            </svg>
+                        </div>
+                        <div id="voice-testing" class="testing icon-gray">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-voice"></use>
+                            </svg>
+                        </div>
+                        <div id="mic-testing" class="testing icon-gray">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-microphone"></use>
+                            </svg>
+                        </div>
+                        <div id="network-testing" class="testing icon-gray">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-network"></use>
+                            </svg>
+                        </div>
+                    </div>
+                    <!-- Detectar câmera -->
+                    <div id="camera-testing-body" class="testing-body" style="display: none;">
+                        <div class="device-list camera-device-list">
+                            <div class="select-title" style="display: block;">
+                                Seleção de câmera</div>
+                            <div class="select-list" style="display: block;">
+                                <select name="select" id="camera-select" class="device-select"></select>
+                            </div>
+                        </div>
+                        <div id="camera-video" class="camera-video"></div>
+                        <div class="testing-info-container">
+                            <div class="testing-info">Você consegue se ver claramente?</div>
+                            <div class="button-list">
+                                <div id="camera-fail" class="fail-button">Não consigo me ver</div>
+                                <div id="camera-success" class="success-button">Consigo me ver!</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Detectar saída de som -->
+                    <div id="voice-testing-body" class="testing-body" style="display: none;">
+                        <div class="device-list camera-device-list">
+                            <div class="select-title" style="display: block;">Seleção de alto-falante</div>
+                            <div class="select-list" style="display: block;">
+                                <select name="select" id="voice-select" class="device-select"></select>
+                            </div>
+                        </div>
+                        <div class="audio-control">
+                            <div class="audio-control-info">Aumente o volume do seu dispositivo, Clique para reproduzir o áudio abaixo para experimentar～</div>
+                            <audio id="audio-player" src="https://web.sdk.qcloud.com/trtc/webrtc/assets/bgm-test.mp3" controls></audio>
+                        </div>
+                        <div class="testing-info-container">
+                            <div class="testing-info">Você consegue ouvir?</div>
+                            <div class="button-list">
+                                <div id="voice-fail" class="fail-button">Não consigo ouvir</div>
+                                <div id="voice-success" class="success-button">Consigo ouvir !</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Detectar microfone -->
+                    <div id="mic-testing-body" class="testing-body" style="display: none;">
+                        <div class="device-list camera-device-list">
+                            <div class="select-title" style="display: block;">Seleção de microfone</div>
+                            <div class="select-list" style="display: block;">
+                                <select name="select" id="mic-select" class="device-select"></select>
+                            </div>
+                        </div>
+                        <div class="mic-testing-container">
+                            <div class="mic-testing-info">Tente dizer 'Olá' no microfone ~</div>
+                            <div id="mic-bar-container" class="mic-bar-container"></div>
+                            <div id="audio-container"></div>
+                        </div>
+                        <div class="testing-info-container">
+                            <div class="testing-info">Você consegue ver o ícone de volume saltando?</div>
+                            <div class="button-list">
+                                <div id="mic-fail" class="fail-button">Não consigo </div>
+                                <div id="mic-success" class="success-button">Consigo ver</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Detectar conexão com interner e sistema utilizado -->
+                    <div id="network-testing-body" class="testing-body" style="display: none;">
+                        <div class="testing-index-list">
+                            <div class="testing-index-group">
+                                <div class="testing-index">Sistema operacional:</div>
+                                <div id="system"></div>
+                            </div>
+                            <div class="testing-index-group">
+                                <div class="testing-index">Versão do navegador:</div>
+                                <div id="browser"></div>
+                            </div>
+                            <!-- <div class="testing-index-group">
+                                <div class="testing-index">IP地址</div>
+                                <div id="ip"></div>
+                            </div> -->
+                            <div class="testing-index-group">
+                                <div class="testing-index">Pode compartilhar tela</div>
+                                <div id="screen-share"></div>
+                            </div>
+                            <div class="testing-index-group">
+                                <div class="testing-index">Atraso de rede</div>
+                                <div id="network-rtt" class="network-loading"></div>
+                            </div>
+                            <div class="testing-index-group">
+                                <div class="testing-index">Qualidade da rede de upload</div>
+                                <div id="uplink-network" class="network-loading"></div>
+                            </div>
+                            <div class="testing-index-group">
+                                <div class="testing-index">Qualidade da rede download</div>
+                                <div id="downlink-network" class="network-loading"></div>
+                            </div>
+                            <div class="testing-index-group">
+                                <div class="testing-index">Verifique o tempo restante</div>
+                                <div id="count-down"></div>
+                            </div>
+                        </div>
+                        <div class="testing-footer">
+                            <div id="testing-report-btn" class="test-btn">Ver relatório de teste</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Relatório de teste dos equipamento -->
+                <div id="device-testing-report" class="device-testing-report" style="display: none;">
+                    <div class="testing-title">Relatório de teste</div>
+                    <!-- Conteúdo do relatório de teste -->
+                    <div class="device-report-list">
+                        <!-- Informações do relatório da câmera -->
+                        <div class="device-report camera-report">
+                            <div class="device-info">
+                                <div class="report-icon">
+                                    <svg class="icon" aria-hidden="true">
+                                        <use xlink:href="#icon-cameraIcon"></use>
+                                    </svg>
+                                </div>
+                                <div id="camera-name" class="device-name"></div>
+                            </div>
+                            <div id="camera-testing-result" class="camera-testing-result"></div>
+                        </div>
+                        <!-- Informações do relatório do palestrante -->
+                        <div id="voice-report" class="device-report voice-report">
+                            <div class="device-info">
+                                <div class="report-icon">
+                                    <svg class="icon" aria-hidden="true">
+                                        <use xlink:href="#icon-voice"></use>
+                                    </svg>
+                                </div>
+                                <div id="voice-name" class="device-name"></div>
+                            </div>
+                            <div id="voice-testing-result" class="voice-testing-result"></div>
+                        </div>
+                        <!-- Informações de relatórios de microfone -->
+                        <div class="device-report mic-report">
+                            <div class="device-info">
+                                <div class="report-icon">
+                                    <svg class="icon" aria-hidden="true">
+                                        <use xlink:href="#icon-microphone"></use>
+                                    </svg>
+                                </div>
+                                <div id="mic-name" class="device-name"></div>
+                            </div>
+                            <div id="mic-testing-result" class="mic-testing-result"></div>
+                        </div>
+                        <!-- Informações de relatórios de rede -->
+                        <div class="device-report network-report">
+                            <div class="device-info">
+                                <div class="report-icon">
+                                    <svg class="icon" aria-hidden="true">
+                                        <use xlink:href="#icon-network"></use>
+                                    </svg>
+                                </div>
+                                <div id="network-name" class="device-name">Atraso de rede</div>
+                            </div>
+                            <div id="rtt-result" class="network-testing-result"></div>
+                        </div>
+                        <div class="device-report network-report">
+                            <div class="device-info">
+                                <div class="report-icon">
+                                    <svg class="icon" aria-hidden="true">
+                                        <use xlink:href="#icon-network"></use>
+                                    </svg>
+                                </div>
+                                <div id="etwork-name" class="device-name">Qualidade da rede de uploas</div>
+                            </div>
+                            <div id="uplink-network-quality-result" class="network-testing-result"></div>
+                        </div>
+                        <div class="device-report network-report">
+                            <div class="device-info">
+                                <div class="report-icon">
+                                    <svg class="icon" aria-hidden="true">
+                                        <use xlink:href="#icon-network"></use>
+                                    </svg>
+                                </div>
+                                <div id="network-name" class="device-name">Qualidade da rede download</div>
+                            </div>
+                            <div id="downlink-network-quality-result" class="network-testing-result"></div>
+                        </div>
+                    </div>
+                    <div class="device-report-footer">
+                        <div id="testing-again" class="device-report-btn testing-agin">Verificar novamente</div>
+                        <div id="testing-finish" class="device-report-btn testing-finish">Finalize o teste</div>
+                    </div>
+                </div>
+                <!-- Botão Fechar detecção de dispositivo -->
+                <div id="device-testing-close-btn" class="device-testing-close-btn">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-closeIcon"></use>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <!-- Página da sala de bate-papo -->
+        <div id="room-root" class="col-div">
+            <!-- header -->
+            <div class="row-div card" style="width: 100%; height: 65px; justify-content: space-between; background-color: #EC87CF; ">
+                <!-- Logo da resily -->
+                <div class="row-div" style="height: 100%; width: 230px; justify-content: center">
+                    <img style="height: 23px" src="./img/logo.png" alt="">
+                    <div style="width: 9px"></div>
+                    <div style="width: 1px; height: 10px; background-color: #d8d8d8"></div>
+                    <div style="width: 9px"></div>
+                    <div style="width: 86px; height: 15px; font-size: 18px; color: white;">ResilyCall</div>
+                </div>
+                <!-- Botão de saída da tela de compartilhamento -->
+                <div class="row-div" style="height: 100%; width: auto;">
+                    <img id="screen-btn" style="width: 65px; height: 65px" src="./img/screen-off.png" alt="">
+                    <div style="width: 20px"></div>
+                    <img id="logout-btn" style="width: 65px; height: 65px" src="./img/logout.png" alt="">
+                </div>
+                <!-- número da sala -->
+                <div id="header-roomId"
+                    style="width: 230px; justify-content: flex-end; padding-right: 20px; font-size: 14px; color: white">
+                    Número da sala: 12345</div>
+            </div>
+            <!-- conteúdo -->
+            <div class="row-div" style="height: 100%; width: 100%; padding: 10px">
+                <div class="col-div" style="width: 340px; height: 100%; padding: 10px">
+                    <div class="col-div card" style="width: 100%; height: 100%">
+                        <!-- Lista de membros -->
+                        <div id="member-list" class="col-div" style="width: 100%; justify-content: flex-start; flex: 1">
+                            <!-- membros -->
+                            <div id="member-me" style="width: 100%; padding-left: 20px">
+                                <div class="row-div member"
+                                    style="width: 100%; height: 50px; justify-content: space-between">
+                                    <div class="member-id">(Eu)</div>
+                                    <div class="row-div" style="width:100px; height: 26px; justify-content: center">
+                                        <img class="member-video-btn" style="height: 100%" src="./img/camera-on.png"
+                                            alt="">
+                                        <div style="width: 18px"></div>
+                                        <div style="width: 28px; height: 28px; display: inline-block; position: relative">
+                                            <img class="member-audio-btn" style="width: 100%; height: 100%;" src="./img/mic-on.png" alt="">
+                                            <div class="volume-level" style="position: absolute; bottom: 0; left: 0; width: 28px; height: 0%; overflow: hidden; transition: height .1s ease;">
+                                                <img style="position: absolute; bottom: 0;" alt="" src="./img/mic-green.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- grade de vídeo -->
+                <div id="video-grid" style="height: 100%; flex: 1">
+                    <!-- Vídeo principal-->
+                    <div id="main-video" class="video-box col-div" style="justify-content: flex-end">
+                        <!--    Botões principais de controle de vídeo -->
+                        <div id="main-video-btns" class="row-div"
+                            style="width: 156px; position: absolute; z-index: 10; justify-content: center; align-self: flex-end">
+                            <img id="video-btn" style="width: 68px; height: 68px" onClick="event.cancelBubble = true"
+                                src="./img/big-camera-on.png" alt="">
+                            <img id="mic-btn" style="width: 68px; height: 68px" onClick="event.cancelBubble = true"
+                                src="./img/big-mic-on.png" alt="">
+                        </div>
+                        <div id="mask_main" class="mask col-div">
+                            <!-- “Máscara a câmera não está ligada" -->
+                            <div style="height: 100%; width: 100%; position: absolute; background-color: #D8D8D8; top: 0; left: 0;"></div>
+                            <img style="width: 63px; height: 69px; z-index: 10;" src="./img/camera-max.png" alt="">
+                            <div style="height: 10px"></div>
+                            <div style="z-index: 10">A câmera não está ligada</div>
+                        </div>
+                    </div>
+                    <!-- vídeo curto -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Exibir um aviso informando que o webRTC não é compatível-->
+    <div id="remind-info-container" style="justify-content: center; display: none;">
+        <!-- Oriente o usuário a abrir o navegador Safari no webview do lado iOS -->
+        <div id="webview-remind" class="webview-remind">
+            <img class="webview-remind-img" src="./img/right-top-arrow.png" alt="right-top-arrow">
+            <div class="webview-remind-info">
+                <span>Clique no ícone ··· no canto superior direito</span>
+                <span style="display: inline-block; margin-top: 10px;">Escolha abrir no navegador Safari</span>
+            </div>
+        </div>
+        <!-- Lembre os usuários de abrir com um navegador utilizável -->
+        <div id="browser-remind" class="browser-remind">
+            <div id="remind-icon" style="width: 100%; font-size: 28px;">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-warn"></use>
+                </svg>
+                <span style="display: inline-block; margin-left: 5px">Dica</span>
+            </div>
+            <div id="remind-info" class="remind-info"></div>
+        </div>
+    </div>
+    <script src="./js/jquery-3.2.1.min.js"></script>
+    <script src="./js/popper.js"></script>
+    <script src="./js/bootstrap-material-design.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('body').bootstrapMaterialDesign();
+        });
+    </script>
+    <script src="./js/lib-generate-test-usersig.min.js"></script>	
+    <script src="./js/debug/GenerateTestUserSig.js"></script>
+    <script src="./js/iconfont.js"></script>
+    <script src="./js/trtc.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/rtc-client.js"></script>
+    <script src="./js/share-client.js"></script>
+    <script src="./js/presetting.js"></script>
+    <script src="./js/rtc-detection.js"></script>
+    <script src="./js/device-testing.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
